@@ -65,7 +65,7 @@ public class MM1Simulation extends Simulation {
                 this.sommeCarreTempsService += (time - c.getArrivalTime()) * (time - c.getArrivalTime());//this means for the variance
                 this.compteurTempsAttente += time - c.getArrivalTime() - c.getServiceTime();
                 this.sommeCarreTempsAttente += (time - c.getArrivalTime() - c.getServiceTime()) * (time - c.getArrivalTime() - c.getServiceTime());
-                if (this.q.lesClients.size() > 0) {//we check if there is a client in the queue 
+                if /*(this.q.lesClients.size() > 0)*/(!this.q.lesClients.isEmpty()) {//we check if there is a client in the queue 
                     Client client = (Client) this.q.lesClients.get(0);//we pick the first client from our vector (first come first serve)
                     double serviceTime = client.getServiceTime();//we get the service time for the client
                     this.liste.addEvent(new Event(1, time + serviceTime));//We add this event to the list of events
