@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * To contribute to the optimisation of this code, contact!
  */
 package simulation;
 
@@ -13,7 +11,7 @@ public abstract class Simulation {
 
     protected double λ;
     protected double μ;
-    protected double U;
+    protected double U;// λ divided by μ
     protected ListeEvents liste;
     protected Queue q;
     protected double t;
@@ -38,12 +36,12 @@ public abstract class Simulation {
         this.sommeCarreTempsService = 0;
         this.compteur = 0;
         this.nombre_Clients = 0;
-        this.nombre_Clients_Presents = 0;
+        this.nombre_Clients_Presents = 0;//The current number of customers in the system.
         this.nombre_Clients_Presents_Total = 0;
     }
 
     public double expo(double taux) {
-        return -Math.log(Math.random()) / taux;
+        return -Math.log(Math.random()) / taux;// -ln(Math.random())/λ
     }
 
     public double getTempsAttenteMoyenPratique() {

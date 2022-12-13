@@ -21,15 +21,15 @@ public class ListeEvents {
     }
 
     public void addEvent(Event newEvent) {
-        int insertIndex = 0; //sert à repérer l’endroit où l’événement newEvent doit être insérer 
-//on compare l’instant de newEvent avec l’instant des autres événements                déjà dans la liste
+        int insertIndex = 0; //is used to locate the place where the newEvent event must be inserted
+        //we compare the time of newEvent with the time of the other events already in the list
         while (insertIndex < events.size()) {
-            Event e = (Event) events.elementAt(insertIndex); //on extrait le insertIndex ème événement
+            Event e = (Event) events.elementAt(insertIndex); //we extract the insertIndex th event
             if (e.getTime() > newEvent.getTime()) {
-                break; //si l’instant de newEvent est le plus près,
+                break; //if the instant of newEvent is closest
             }
-//on sort de la boucle
-            insertIndex++; //sinon on incrémente insertIndex, et on reboucle
+            //on sort de la boucle
+            insertIndex++; //otherwise we increment insertIndex, and we loop
         }
         events.insertElementAt(newEvent, insertIndex); //on insert l’événement newEvent au bon endroit
     }

@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+  * To contribute to the optimisation of this code, contact!
  */
 package simulation;
 
@@ -12,23 +10,22 @@ package simulation;
 public class MM1Simulation extends Simulation {
 
     public MM1Simulation(double λ, double μ) {
-        super(λ, μ);
+        super(λ, μ);//our simulation depends on λ and μ 
     }
 
     public double getTempsAttenteMoyenTheorique() {
         double tpsMoyen = this.U / (this.μ * (1 - this.U));
-        return tpsMoyen;
+        return tpsMoyen;//La durée d’attente moyenne 𝑊𝑞 d’un client: Wq = Lq/λ little formula
     }
 
     public double getNombreTotalClientsSystemeTheorique() {
         double moyenne = this.U / (1 - this.U);
-        return moyenne;
+        return moyenne;//The number of customers in the sys: L = u/(1-u) littel formula
     }
 
     @Override
     public void simulate(double simLength) {
-        double beginTime = System.currentTimeMillis();
-
+        double beginTime = System.currentTimeMillis();//returns the current time in milliseconds.
         double time = 0;//The simulation begins at t=0
         Event s1 = new Event(0, expo(this.λ));//At this instant, 
         //the next event s1 is generated, corresponds to a customer arrival = 0;
@@ -72,16 +69,19 @@ public class MM1Simulation extends Simulation {
                 }
             }
         }
-
-        System.out.println("\n===============Rapport de la simulation MM1=================");
-        System.out.println("Temps de calcul: " + (System.currentTimeMillis() - beginTime) * 0.001 + " secondes");
-        System.out.println("Temps d'attente moyen (Theorique) : " + this.getTempsAttenteMoyenTheorique());
-        System.out.println("Temps d'attente moyen (Pratique) : " + this.getTempsAttenteMoyenPratique());
-        System.out.println("Variance du temps d'attente: " + this.getVarianceTempsAttente());
-        System.out.println("Temps de service moyen: " + this.getTempsServiceMoyen());
-        System.out.println("Variance du temps de service: " + this.getVarianceTempsService());
-        System.out.println("Nombre de clients servis pendant toute la simulation: " + this.getNombreTotalClients());
-        System.out.println("Nombre de clients moyen dans le systeme (Theorique) : " + this.getNombreTotalClientsSystemeTheorique());
-        System.out.println("Nombre de clients moyen dans le systeme (Pratique) : " + this.getNombreTotalClientsSystemePratique());
+        //Variance indicates The average degree to which each point differs from the mean
+        //Variance means The degree to which returns vary or change over time
+        System.out.println("\n=============== Report For The MM1 SIMULATION =================");
+        System.out.println("Begin Time is: "+beginTime * 0.001+" seconds");
+        System.out.println("End Time is : " + System.currentTimeMillis() * 0.001 + " secondes");
+        System.out.println("Calculations Duration: " + (System.currentTimeMillis() - beginTime) * 0.001 + " secondes");
+        System.out.println("Average Waiting Time(Theorique) : " + this.getTempsAttenteMoyenTheorique());
+        System.out.println("Average Waiting Time (Pratique) : " + this.getTempsAttenteMoyenPratique());
+        System.out.println("Variance of The Waiting Time: " + this.getVarianceTempsAttente());
+        System.out.println("Average Service Time: " + this.getTempsServiceMoyen());
+        System.out.println("Variance of Service Time : " + this.getVarianceTempsService());
+        System.out.println("Number of Customers served During the whole simulation: " + this.getNombreTotalClients());
+        System.out.println("Average Number of customers in the system(Theorique) : " + this.getNombreTotalClientsSystemeTheorique());// L = u/(1-u)
+        System.out.println("Average Number of customers in the system(Pratique) : " + this.getNombreTotalClientsSystemePratique());
     }
 }
